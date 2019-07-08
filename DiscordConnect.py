@@ -2,6 +2,8 @@
 import discord
 import json
 import WebScrape
+import GenerateGraph
+from discord import File
 
 with open('Secret.json') as json_file:  
     data = json.load(json_file)
@@ -17,7 +19,9 @@ async def on_message(message):
 
     if message.content.startswith('!hello'):
         msg = 'Hello {0.author.mention}'.format(message)
-        await message.channel.send(msg)
+        # await message.channel.send(msg)
+        testFile = File('options.csv')
+        await message.channel.send(file = testFile)
 
     elif message.content.startswith('!recordanewmixtape'):
         msg = 'No {0.author.mention}, you do it'.format(message)
@@ -61,12 +65,21 @@ async def on_message(message):
                 msg = msg + opt + '\n'
         await message.channel.send(msg)
 
+    elif message.content.startswith('!stock'):
+        cmd = message.content
+        cmdParts = cmd.split()
+        GenerateGraph.makeGraph(cmdParts[1])
+        graphFile = File('stock_information.html')
+        await message.channel.send(file = graphFile)
+
+
     elif message.content.startswith('!help'):
         msg = 'Remember to seperate each part of the command with a space\n'
         msg = msg + '!setOption <link to screener> <name of option (one word)>\n'
         msg = msg + '!removeOption <name of option>\n'
         msg = msg + '!listOptions\n'
         msg = msg + '!tickers <name of option>\n'
+        msg = msg + '!stock <stock ticker>\n'
         await message.channel.send(msg)
 
 @client.event

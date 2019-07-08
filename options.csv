@@ -1,1 +1,4 @@
 standard,https://finviz.com/screener.ashx?v=111
+newOption,https://finviz.com/screener.ashx?v=111&f=cap_large,exch_nasd,fa_div_o3,sec_financial
+highVal,https://finviz.com/screener.ashx?v=111&f=sec_financial,ta_highlow20d_b5h,ta_sma20_pb10,targetprice_a30&ft=4
+option2,https://finviz.com/screener.ashx?v=111&f=exch_nasd,fa_quickratio_u1,sec_financial,ta_candlestick_lls&ft=4
